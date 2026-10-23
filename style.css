@@ -1,0 +1,1241 @@
+html {
+  height: 100%;
+  background: 50% 50% no-repeat
+    url('data:image/svg+xml,<svg viewBox="-20 -5 60 40" width="140" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M1 8l11-7 11 7v8l-11 7-11-7zm0 0l11 8 11-8m0 8L12 8 1 16M12 1v7m0 8v7" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/><text x="-12" y="32" font-size="5" font-family="monospace" fill="currentColor">Built on CodePen</text></svg>');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f5f0e7;
+  --ink: #242b29;
+  --green: #183e37;
+  --gold: #c99c55;
+  --cream: #fffaf1;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Yu Gothic", "Meiryo", sans-serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 6%;
+  background: var(--cream);
+  border-bottom: 1px solid #ddd3c3;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark,
+.footer-brand {
+  color: var(--green);
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.brand-name {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav a {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav a:hover {
+  color: #a67530;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 610px;
+  overflow: hidden;
+  padding: 90px 10%;
+  color: white;
+  background:
+    linear-gradient(90deg, rgba(10, 30, 27, .94), rgba(10, 30, 27, .52)),
+    url("https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1800&q=85")
+    center 45% / cover no-repeat,
+    var(--green);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 9vw, 106px);
+  line-height: .98;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: #e0b66f;
+}
+
+.hero-text {
+  margin: 28px 0;
+  font-size: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 23px;
+  border: 1px solid var(--gold);
+  color: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: background .2s, color .2s;
+}
+
+.button:hover {
+  background: var(--gold);
+  color: #202720;
+}
+
+.hero-note {
+  position: absolute;
+  right: 8%;
+  bottom: 5%;
+  color: rgba(255,255,255,.22);
+  font-family: Georgia, serif;
+  font-size: clamp(40px, 8vw, 100px);
+}
+
+.section {
+  padding: 95px 10%;
+}
+
+.section-label {
+  margin-bottom: 32px;
+  color: #98713c;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-content {
+  max-width: 700px;
+  margin-left: auto;
+}
+
+.section h2 {
+  margin: 0 0 25px;
+  color: var(--green);
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: clamp(30px, 4vw, 47px);
+  line-height: 1.5;
+}
+
+.section-content > p:not(.eyebrow) {
+  max-width: 620px;
+  font-size: 14px;
+}
+
+.concert {
+  background: #e8e0d2;
+}
+
+.concert-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--cream);
+}
+
+.concert-photo {
+  min-height: 350px;
+}
+
+.concert-info {
+  align-self: center;
+  padding: 38px;
+}
+
+.concert-info h2 {
+  font-size: clamp(28px, 3.5vw, 40px);
+}
+
+.concert-info > p:not(.eyebrow) {
+  font-size: 14px;
+}
+
+.notice {
+  margin-top: 22px;
+  padding: 14px;
+  background: #eee7da;
+  font-size: 12px !important;
+}
+
+.gallery {
+  background: var(--cream);
+}
+
+.section-heading {
+  margin-bottom: 32px;
+}
+
+.section-heading h2 {
+  margin-bottom: 5px;
+  font-family: Georgia, serif;
+  font-size: 54px;
+}
+
+.section-heading > p:last-child {
+  font-size: 13px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.gallery-grid img {
+  aspect-ratio: 4 / 3;
+  background: #d8d0c4;
+}
+
+.gallery-caption {
+  color: #777;
+  font-size: 11px;
+}
+
+.recruit {
+  color: white;
+  background: var(--green);
+}
+
+.recruit-box {
+  max-width: 650px;
+  margin: auto;
+  text-align: center;
+}
+
+.recruit h2 {
+  color: var(--cream);
+}
+
+.recruit-box > p:not(.eyebrow) {
+  margin: 20px auto 30px;
+  max-width: 520px;
+  font-size: 14px;
+}
+
+.contact {
+  background: var(--bg);
+}
+
+.footer {
+  padding: 40px 20px;
+  background: #172b27;
+  color: #f5f0e7;
+  text-align: center;
+}
+
+.footer-brand {
+  color: #e0b66f;
+  font-size: 32px;
+}
+
+.footer p {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.footer small {
+  color: #c4c7c1;
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .header {
+    padding: 14px 5%;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-mark {
+    font-size: 23px;
+  }
+
+  .brand-name {
+    max-width: 135px;
+    font-size: 8px;
+    line-height: 1.5;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 5% 20px;
+    background: var(--cream);
+    border-bottom: 1px solid #ddd3c3;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 12px 0;
+  }
+
+  .hero {
+    min-height: 520px;
+    padding: 70px 7%;
+    background-position: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 14vw, 82px);
+  }
+
+  .section {
+    padding: 65px 7%;
+  }
+
+  .section-content {
+    margin-left: 0;
+  }
+
+  .concert-card {
+    grid-template-columns: 1fr;
+  }
+
+  .concert-photo {
+    min-height: 240px;
+  }
+
+  .concert-info {
+    padding: 28px 23px;
+  }
+
+  .gallery-grid {
+    gap: 10px;
+  }
+
+  .section-heading h2 {
+    font-size: 43px;
+  }
+}
+
+/* 実際のライブ写真をメインビジュアルに使用 */
+.hero-real-photo {
+  background-image: url("YOUR_IMAGE_URL_01");
+  background-position: center 58%;
+}
+
+/* ライブ写真を見やすく */
+.gallery-grid figure {
+  background: #151923;
+}
+
+.gallery-grid img {
+  object-fit: cover;
+}
+
+/* スマートフォンでも写真の構図を調整 */
+@media (max-width: 640px) {
+  .hero-real-photo {
+    background-position: 50% center;
+  }
+
+  .concert-image {
+    min-height: 260px;
+  }
+}
+```css
+/* Members */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.member-card {
+  padding: 24px;
+  border: 1px solid rgba(190, 155, 95, 0.35);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.member-card h3 {
+  margin: 0 0 8px;
+}
+
+.member-card p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* History */
+.history-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(190, 155, 95, 0.35);
+}
+
+.history-date {
+  min-width: 72px;
+  color: #c5a46d;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.history-item h3 {
+  margin: 0 0 8px;
+}
+
+.history-item p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-item {
+    gap: 12px;
+  }
+}
+.nav.is-open {
+  display: flex !important;
+  flex-direction: column;
+}
+/* Contact links */
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid rgba(190, 155, 95, 0.4);
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-link:hover {
+  background: rgba(190, 155, 95, 0.1);
+  border-color: #c5a46d;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #c5a46d;
+  border-radius: 50%;
+  color: #c5a46d;
+  font-size: 22px;
+}
+
+.contact-link strong {
+  letter-spacing: 1px;
+}
+
+.contact-arrow {
+  margin-left: auto;
+  color: #c5a46d;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+/* Contact icon refinement */
+.contact-link {
+  position: relative;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid rgba(197, 164, 109, 0.35);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-link:hover {
+  background: rgba(197, 164, 109, 0.08);
+  border-color: #c5a46d;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #c5a46d;
+  border-radius: 50%;
+  color: #c5a46d;
+}
+
+.contact-icon svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Facebook icon uses its recognizable silhouette */
+.contact-link[href*="facebook.com"] .contact-icon svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.contact-text strong {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #c5a46d;
+}
+
+.contact-text > span {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+
+.contact-arrow {
+  display: none !important;
+}
+
+/* =========================
+   LIVE / 活動実績
+========================= */
+
+.live-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.live-card {
+  position: relative;
+  overflow: hidden;
+  background: #151515;
+  border: 1px solid rgba(198, 161, 91, 0.38);
+  border-radius: 4px;
+  color: #f5f0e6;
+  transition: border-color 0.3s ease,
+              transform 0.3s ease;
+}
+
+.live-card:hover {
+  border-color: #c6a15b;
+  transform: translateY(-4px);
+}
+
+.live-card-date {
+  padding: 18px 24px;
+  background: #202020;
+  border-bottom: 1px solid rgba(198, 161, 91, 0.3);
+  color: #c6a15b;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.live-card-content {
+  padding: 26px 24px 30px;
+}
+
+.live-card-label {
+  margin: 0 0 12px;
+  color: #c6a15b;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.live-card h3 {
+  margin: 0 0 20px;
+  color: #f5f0e6;
+  font-size: 21px;
+  line-height: 1.6;
+}
+
+.live-card-lead {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.8;
+}
+
+.live-card-description {
+  margin: 0 0 24px;
+  color: #d0cbc1;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.live-card-description strong {
+  color: #c6a15b;
+}
+
+.live-card-info {
+  padding-top: 16px;
+  border-top: 1px solid rgba(198, 161, 91, 0.25);
+}
+
+.live-card-info p {
+  margin: 8px 0;
+  color: #d0cbc1;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.live-card-info span {
+  display: inline-block;
+  min-width: 68px;
+  color: #c6a15b;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.live-card-info a {
+  color: #f5f0e6;
+  text-decoration: underline;
+  text-decoration-color: #c6a15b;
+  text-underline-offset: 4px;
+}
+
+.live-card-info a:hover {
+  color: #c6a15b;
+}
+
+/* スマートフォン */
+@media (max-width: 700px) {
+  .live-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .live-card-content {
+    padding: 22px 20px 26px;
+  }
+
+  .live-card h3 {
+    font-size: 19px;
+  }
+}
+
+/* =========================
+   ページ全体の横幅を広げる
+========================= */
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* 各セクションの幅制限を解除 */
+section {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* セクション内のコンテンツ幅を広げる */
+section .container,
+section .inner,
+section .content,
+section .section-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* 横の余白を調整 */
+section .container,
+section .inner,
+section .content,
+section .section-inner {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* スマートフォン */
+@media (max-width: 700px) {
+  section .container,
+  section .inner,
+  section .content,
+  section .section-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* =========================
+   PC表示：コンテンツの横幅を拡大
+========================= */
+
+/* ヘッダーの左右余白 */
+.header {
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+/* トップのメインビジュアル */
+.hero {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+/* 各セクションの左右余白を縮小 */
+.section {
+  width: 100%;
+  padding: 90px 5%;
+}
+
+/* バンド紹介などのコンテンツ幅を拡大 */
+.section-content {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+}
+
+/* 説明文は読みやすさを維持 */
+.section-content > p:not(.eyebrow) {
+  max-width: 900px;
+}
+
+/* ライブ・コンサート情報を横幅いっぱいに */
+.concert-card {
+  width: 100%;
+}
+
+/* メンバー紹介・活動履歴 */
+.members-grid,
+.live-list {
+  width: 100%;
+}
+
+/* ギャラリーを広く表示 */
+.gallery-grid {
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* 募集案内も幅を広げる */
+.recruit-box {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* スマートフォンでは左右の余白を確保 */
+@media (max-width: 760px) {
+  .header {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hero {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .section {
+    padding: 65px 6%;
+  }
+
+  .section-content {
+    width: 100%;
+  }
+
+  .gallery-grid {
+    gap: 10px;
+  }
+}
+
+/* ==============================
+   NEXT CONCERT - 13th Recital
+============================== */
+
+.next-concert {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 70px;
+  padding: 32px;
+  background: var(--cream, #fffaf1);
+  border: 1px solid rgba(201, 156, 85, 0.45);
+  border-top: 4px solid var(--gold, #c99c55);
+  box-shadow: 0 12px 35px rgba(24, 62, 55, 0.08);
+}
+
+.next-concert-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(36, 43, 41, 0.15);
+}
+
+.next-concert-label {
+  color: var(--green, #183e37);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.next-concert-number {
+  color: var(--gold, #c99c55);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.next-concert-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.next-concert-poster {
+  display: block;
+  overflow: hidden;
+  background: #18201f;
+  line-height: 0;
+}
+
+.next-concert-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.next-concert-poster:hover img {
+  transform: scale(1.02);
+}
+
+.next-concert-info {
+  min-width: 0;
+}
+
+.next-concert-eyebrow {
+  margin: 0 0 8px;
+  color: var(--gold, #c99c55);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  overflow-wrap: anywhere;
+}
+
+.next-concert-info h3 {
+  margin: 0 0 14px;
+  color: var(--green, #183e37);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.5vw, 43px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.next-concert-intro {
+  margin: 0 0 24px;
+  color: var(--ink, #242b29);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.next-concert-date {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 15px 18px;
+  background: var(--green, #183e37);
+  color: var(--cream, #fffaf1);
+}
+
+.next-concert-date .date-year {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.next-concert-date .date-day {
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+
+.next-concert-date .date-weekday {
+  color: var(--gold, #c99c55);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.next-concert-details {
+  border-top: 1px solid rgba(36, 43, 41, 0.15);
+}
+
+.next-concert-details .detail-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(36, 43, 41, 0.12);
+  color: var(--ink, #242b29);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.next-concert-details .detail-label {
+  color: var(--gold, #a77b38);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.next-concert-details small {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.next-concert-guest {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 24px;
+  padding-left: 15px;
+  border-left: 3px solid var(--gold, #c99c55);
+}
+
+.next-concert-guest .guest-label {
+  color: var(--gold, #a77b38);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.next-concert-guest strong {
+  color: var(--green, #183e37);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.next-concert-venue-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+  padding: 12px 18px;
+  border: 1px solid var(--green, #183e37);
+  color: var(--green, #183e37);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.next-concert-venue-link:hover {
+  background: var(--green, #183e37);
+  color: var(--cream, #fffaf1);
+}
+
+.next-concert-venue-link span {
+  font-size: 15px;
+}
+
+/* Tablet / Mobile */
+@media (max-width: 760px) {
+  .next-concert {
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+
+  .next-concert-heading {
+    margin-bottom: 20px;
+  }
+
+  .next-concert-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .next-concert-poster {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .next-concert-info h3 {
+    font-size: 34px;
+  }
+
+  .next-concert-intro {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) {
+  .next-concert {
+    padding: 15px;
+  }
+
+  .next-concert-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .next-concert-date {
+    gap: 8px;
+    padding: 13px;
+  }
+
+  .next-concert-date .date-day {
+    font-size: 30px;
+  }
+
+  .next-concert-details .detail-row {
+    grid-template-columns: 65px minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+/* ==============================
+   ABOUT US
+============================== */
+
+.about .section-content {
+  max-width: 900px;
+  margin-left: auto;
+}
+
+.about .section-content > .eyebrow {
+  margin-bottom: 12px;
+}
+
+.about .section-content > h2 {
+  margin: 0 0 24px;
+  color: var(--green, #183e37);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+.about-catch {
+  margin: 0 0 35px;
+  padding-left: 20px;
+  border-left: 3px solid var(--gold, #c99c55);
+  color: var(--green, #183e37);
+  font-size: clamp(19px, 2.4vw, 26px);
+  font-weight: 600;
+  line-height: 1.9;
+  letter-spacing: 1px;
+}
+
+.about-body {
+  max-width: 780px;
+}
+
+.about-body p,
+.about-name-story p {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 2.2;
+  overflow-wrap: anywhere;
+}
+
+.about-name-story {
+  margin-top: 48px;
+  padding: 32px;
+  background: rgba(24, 62, 55, 0.055);
+  border-top: 2px solid var(--gold, #c99c55);
+}
+
+.about-name-story .eyebrow {
+  margin: 0 0 15px;
+  color: var(--gold, #a77b38);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.about-name-story h3 {
+  margin: 0 0 22px;
+  color: var(--green, #183e37);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.about-name-story em {
+  color: var(--green, #183e37);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.about-closing {
+  margin: 38px 0 0;
+  color: var(--green, #183e37);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 2.2;
+}
+
+@media (max-width: 760px) {
+  .about .section-content {
+    max-width: 100%;
+  }
+
+  .about .section-content > h2 {
+    font-size: 37px;
+  }
+
+  .about-catch {
+    padding-left: 15px;
+    font-size: 19px;
+  }
+
+  .about-body p,
+  .about-name-story p {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .about-name-story {
+    margin-top: 35px;
+    padding: 22px 18px;
+  }
+
+  .about-closing {
+    font-size: 14px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}

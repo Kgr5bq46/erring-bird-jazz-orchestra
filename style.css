@@ -352,9 +352,10 @@ img {
     border-bottom: 1px solid #ddd3c3;
   }
 
-  .nav.open {
-    display: flex;
-  }
+.nav.is-open {
+  display: flex !important;
+  flex-direction: column;
+}
 
   .nav a {
     padding: 12px 0;

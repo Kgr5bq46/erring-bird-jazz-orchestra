@@ -1249,3 +1249,40 @@ section .section-inner {
   margin: 24px auto;
   border-radius: 4px;
 }
+/* スマートフォンのハンバーガーメニュー修正 */
+@media (max-width: 760px) {
+  .header {
+    position: sticky;
+    z-index: 1000;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 5% 20px;
+    background: #fffaf1;
+    border-bottom: 1px solid #ddd3c3;
+  }
+
+  .nav.is-open {
+    display: flex !important;
+  }
+
+  .nav a {
+    display: block;
+    padding: 12px 0;
+    color: #242b29;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 1002;
+  }
+}

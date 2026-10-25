@@ -1286,3 +1286,123 @@ section .section-inner {
     z-index: 1002;
   }
 }
+/* ========================================
+   MEMBERS - 楽器紹介
+======================================== */
+
+.members-intro {
+  margin: 18px 0 36px;
+  line-height: 2;
+  color: var(--text);
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.member-card {
+  min-width: 0;
+  padding: 22px 14px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(184, 145, 74, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+}
+
+.instrument-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(184, 145, 74, 0.12);
+  font-size: 43px;
+}
+
+.member-card h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.instrument-name {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.instrument-description {
+  margin: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.members-message {
+  margin-top: 36px;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-style: italic;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* タブレット */
+@media (max-width: 1000px) {
+  .members-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* スマートフォン */
+@media (max-width: 600px) {
+  .members-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .member-card {
+    padding: 18px 12px;
+  }
+
+  .instrument-icon {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 14px;
+    font-size: 34px;
+  }
+
+  .member-card h3 {
+    font-size: 12px;
+  }
+
+  .instrument-name {
+    font-size: 12px;
+  }
+
+  .instrument-description {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .members-message {
+    font-size: 21px;
+  }
+}

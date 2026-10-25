@@ -1406,10 +1406,16 @@ section .section-inner {
     font-size: 21px;
   }
 }
-/* ABOUT US：PC表示で左寄せに調整 */
+/* ABOUT US：PC表示で左側に配置 */
 @media (min-width: 761px) {
+  section.about {
+    display: block;
+  }
+
   #about .section-content {
-    margin-left: 0;
-    margin-right: auto;
+    width: 100%;
+    max-width: 900px;
+    margin-left: 0 !important;
+    margin-right: auto !important;
   }
 }

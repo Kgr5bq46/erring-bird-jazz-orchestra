@@ -1131,7 +1131,8 @@ section .section-inner {
 
 .about .section-content {
   max-width: 900px;
-  margin-left: auto;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .about .section-content > .eyebrow {

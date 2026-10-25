@@ -1407,10 +1407,13 @@ section .section-inner {
     font-size: 21px;
   }
 }
-/* ABOUT US：PC表示でコンテンツを左寄せ */
+/* ABOUT US：PC表示でコンテンツを左側に配置 */
 @media (min-width: 761px) {
-  #about .section-content {
+  section.section.about > .section-content {
+    width: 100%;
+    max-width: 900px;
     margin-left: 0 !important;
     margin-right: auto !important;
+    justify-self: start;
   }
 }

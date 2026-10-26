@@ -1966,3 +1966,39 @@ color: #000000;
     margin-top: 22px;
   }
 }
+
+/* スマートフォン：活動実績を1列表示 */
+@media (max-width: 700px) {
+  .history .live-list,
+  .history .event-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .history .live-list .live-card-featured,
+  .history .event-list .live-card-featured {
+    grid-column: auto;
+  }
+
+  .history .live-list .live-card,
+  .history .event-list .live-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .history .live-list .live-card-content,
+  .history .event-list .live-card-content {
+    padding: 22px 20px 26px;
+    box-sizing: border-box;
+  }
+
+  .history .live-list .live-card img,
+  .history .event-list .live-card img {
+    max-width: 100%;
+    height: auto;
+  }
+}

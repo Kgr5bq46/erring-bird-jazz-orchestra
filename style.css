@@ -1844,3 +1844,8 @@ color: #000000;
     font-size: 23px;
   }
 }
+
+/* イベント出演・依頼演奏の説明文を黒にする */
+.history .history-category-events > p {
+  color: #000000 !important;
+}

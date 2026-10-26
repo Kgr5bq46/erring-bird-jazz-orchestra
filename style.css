@@ -1444,9 +1444,20 @@ section .section-inner {
   text-align: center;
 }
 
+```css
+/* PC：活動実績を2列で表示 */
 .live-card-featured {
-  grid-column: 1 / -1;
+  grid-column: auto;
+  min-width: 0;
 }
+
+/* スマホ：1列で表示 */
+@media (max-width: 700px) {
+  .live-card-featured {
+    grid-column: 1 / -1;
+  }
+}
+```
 
 .live-card-featured .live-card-content {
   padding: 30px;

@@ -1641,3 +1641,47 @@ section .section-inner {
     font-size: 12px;
   }
 }
+/* スマホ表示：楽器カードの重なりを防ぐ */
+@media screen and (max-width: 600px) {
+  .members .member-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 20px 15px;
+    overflow: visible !important;
+  }
+
+  .members .member-card .instrument-photo {
+    display: block;
+    position: static !important;
+    width: 100%;
+    max-width: 220px;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0 auto 18px;
+    flex-shrink: 0;
+  }
+
+  .members .member-card h3 {
+    position: static !important;
+    width: 100%;
+    height: auto !important;
+    margin: 0 0 10px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .members .member-card p {
+    position: static !important;
+    width: 100%;
+    height: auto !important;
+    margin: 0 0 10px;
+    line-height: 1.8;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+}

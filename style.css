@@ -1787,3 +1787,60 @@ section .section-inner {
     margin-top: 48px;
   }
 }
+
+/* HISTORY：活動カテゴリー見出しを復活・強調 */
+.history .history-category {
+  display: block !important;
+  position: relative;
+  clear: both;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 48px 0 28px;
+  padding: 22px 24px;
+  background: rgba(198, 161, 91, 0.12);
+  border-left: 5px solid #c6a15b;
+  border-bottom: 1px solid rgba(198, 161, 91, 0.5);
+}
+
+.history .history-category .eyebrow {
+  display: block !important;
+  margin: 0 0 8px;
+  color: #c6a15b;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.history .history-category h3 {
+  display: block !important;
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0 0 10px;
+  color: #f5f0e6;
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+.history .history-category > p:last-child {
+  display: block !important;
+  margin: 0;
+  color: #f5f0e6;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.history .history-category-events {
+  margin-top: 64px;
+}
+
+@media (max-width: 600px) {
+  .history .history-category {
+    margin: 32px 0 22px;
+    padding: 18px 15px;
+  }
+
+  .history .history-category h3 {
+    font-size: 23px;
+  }
+}

@@ -1935,3 +1935,34 @@ color: #000000;
     font-size: 10px;
   }
 }
+
+/* イベント出演の見出し装飾を見出し部分だけに限定 */
+.history .history-category-events {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  box-sizing: border-box;
+  border-left: 5px solid #c6a15b;
+  background: rgba(198, 161, 91, 0.12);
+  padding: 22px 24px;
+  overflow: hidden;
+}
+
+/* 見出しの後ろに装飾が伸びないようにする */
+.history .history-category-events + .event-list {
+  margin-top: 28px;
+  border-left: none;
+  background: transparent;
+}
+
+/* スマートフォン */
+@media (max-width: 700px) {
+  .history .history-category-events {
+    padding: 18px 15px;
+  }
+
+  .history .history-category-events + .event-list {
+    margin-top: 22px;
+  }
+}

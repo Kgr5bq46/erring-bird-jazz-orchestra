@@ -1457,7 +1457,7 @@ section .section-inner {
     grid-column: 1 / -1;
   }
 }
-```
+
 
 .live-card-featured .live-card-content {
   padding: 30px;
@@ -1477,4 +1477,31 @@ section .section-inner {
     padding: 8px;
   }
 }
-```
+
+/* =========================
+   HISTORY：PCは2列、スマホは1列
+========================= */
+
+.history .live-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  width: 100%;
+}
+
+.history .live-list .live-card-featured {
+  grid-column: auto;
+  min-width: 0;
+}
+
+/* スマートフォンでは縦1列 */
+@media (max-width: 700px) {
+  .history .live-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .history .live-list .live-card-featured {
+    grid-column: 1 / -1;
+  }
+}

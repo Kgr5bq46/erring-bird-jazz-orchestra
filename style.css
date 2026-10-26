@@ -1580,3 +1580,64 @@ section .section-inner {
     margin-bottom: 12px;
   }
 }
+/* =========================
+   MEMBERS : FIX PHOTO SPACING
+========================= */
+
+/* 楽器カード内の要素を縦に並べる */
+.members .member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+/* 楽器写真 */
+.members .member-card .instrument-photo {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+/* 英語の楽器名 */
+.members .member-card h3 {
+  position: static;
+  margin: 0 0 8px;
+  width: 100%;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* 日本語名・特徴の文章 */
+.members .member-card p {
+  position: static;
+  width: 100%;
+  line-height: 1.8;
+  margin-top: 0;
+  overflow-wrap: anywhere;
+}
+
+/* スマートフォン */
+@media (max-width: 600px) {
+  .members .member-card .instrument-photo {
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .members .member-card h3 {
+    font-size: 13px;
+  }
+
+  .members .member-card p {
+    font-size: 12px;
+  }
+}

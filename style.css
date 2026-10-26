@@ -1849,3 +1849,8 @@ color: #000000;
 .history .history-category-events > p {
   color: #000000 !important;
 }
+
+/* イベント出演カードのタイトルを白色にする */
+.history .event-list .live-card h3 {
+  color: #ffffff !important;
+}

@@ -1417,3 +1417,53 @@ section .section-inner {
     justify-self: start;
   }
 }
+```css
+/* =========================
+   LIVE HISTORY / POSTER
+========================= */
+
+.live-card-poster {
+  margin: 28px 0;
+  padding: 12px;
+  background: #202020;
+  border: 1px solid rgba(198, 161, 91, 0.45);
+}
+
+.live-card-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.live-card-poster figcaption {
+  padding-top: 10px;
+  color: #c6a15b;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.live-card-featured {
+  grid-column: 1 / -1;
+}
+
+.live-card-featured .live-card-content {
+  padding: 30px;
+}
+
+.live-card-featured .live-card-description {
+  max-width: 900px;
+}
+
+@media (max-width: 700px) {
+  .live-card-featured .live-card-content {
+    padding: 22px 18px 26px;
+  }
+
+  .live-card-poster {
+    margin: 22px 0;
+    padding: 8px;
+  }
+}
+```

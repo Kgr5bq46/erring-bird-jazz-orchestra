@@ -1817,7 +1817,7 @@ section .section-inner {
   visibility: visible !important;
   opacity: 1 !important;
   margin: 0 0 10px;
-  color: #f5f0e6;
+color: #000000;
   font-size: 28px;
   line-height: 1.5;
 }
@@ -1825,7 +1825,7 @@ section .section-inner {
 .history .history-category > p:last-child {
   display: block !important;
   margin: 0;
-  color: #f5f0e6;
+color: #000000;
   font-size: 14px;
   line-height: 1.9;
 }

@@ -2021,3 +2021,7 @@ color: #000000;
     box-sizing: border-box !important;
   }
 }
+/* EVENTS & PERFORMANCES の文字色を統一 */
+.history .history-category-events .eyebrow {
+  color: #c6a15b !important;
+}

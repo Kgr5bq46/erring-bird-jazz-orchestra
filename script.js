@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const photoLightboxClose = document.getElementById("photoLightboxClose");
 
   // ========================================
-  // ハンバーガーメニューの開閉
+  // ハンバーガーメニュー
   // ========================================
 
   if (menuToggle && mainNav) {
@@ -17,15 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const isOpen = mainNav.classList.toggle("is-open");
 
       menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "メニューを閉じる" : "メニューを開く"
+      );
       menuToggle.textContent = isOpen ? "×" : "☰";
     });
 
-    // メニュー項目を押したら閉じる
     mainNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         mainNav.classList.remove("is-open");
-
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.setAttribute("aria-label", "メニューを開く");
         menuToggle.textContent = "☰";
@@ -56,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (photoLightbox && photoLightboxImage && photoLightboxClose) {
 
-    // 写真をクリックしたら拡大
     document.querySelectorAll("img").forEach(function (img) {
       if (
         img === photoLightboxImage ||
@@ -70,12 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
       img.style.cursor = "zoom-in";
 
       img.addEventListener("click", function (event) {
-        // 別ページへのリンク画像は、そのままリンクを有効にする
         const link = img.closest("a");
 
         if (link) {
           const href = link.getAttribute("href") || "";
-          const isImageLink = /\.(jpg|jpeg|png|gif|webp|avif)(\?.*)?$/i.test(href);
+          const isImageLink =
+            /\.(jpg|jpeg|png|gif|webp|avif)(\?.*)?$/i.test(href);
 
           if (!isImageLink) return;
 
@@ -91,13 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // ライトボックスを閉じる
     function closeLightbox() {
       photoLightbox.classList.remove("is-open");
       photoLightbox.setAttribute("aria-hidden", "true");
       document.body.classList.remove("lightbox-open");
 
-      // フェードアウト後に画像を空にする
       setTimeout(function () {
         if (!photoLightbox.classList.contains("is-open")) {
           photoLightboxImage.src = "";
@@ -105,58 +103,110 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 350);
     }
 
-    // ×ボタンで閉じる
     photoLightboxClose.addEventListener("click", closeLightbox);
 
-    // 背景部分をクリックして閉じる
     photoLightbox.addEventListener("click", function (event) {
       if (event.target === photoLightbox) {
         closeLightbox();
       }
     });
 
-    // Escキーで閉じる
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && photoLightbox.classList.contains("is-open")) {
+      if (
+        event.key === "Escape" &&
+        photoLightbox.classList.contains("is-open")
+      ) {
         closeLightbox();
       }
     });
-    
+  }
+
   // ========================================
   // スクロール時の順次表示アニメーション
   // ========================================
 
-  const revealTargets = document.querySelectorAll(
-    "section > *, .hero > *, footer > *"
+  const revealSelector = [
+    ".hero-content > *",
+    ".hero-note",
+
+    ".section-label",
+
+    ".about .section-content > *",
+    ".about-body > p",
+    ".about-name-story > *",
+
+    ".members .section-content > .eyebrow",
+    ".members .section-content > h2",
+    ".members-intro",
+    ".members-grid .member-card",
+    ".members-message",
+
+    ".concert-photo",
+    ".concert-info > *",
+    ".next-concert-heading > *",
+    ".next-concert-layout > *",
+
+    ".section-heading > *",
+    ".gallery-grid > img",
+
+    ".history .section-content > .eyebrow",
+    ".history .section-content > h2",
+    ".history .section-content > p",
+    ".history-category > *",
+    ".live-list > .live-card",
+    ".event-list > .live-card",
+
+    ".recruit-box > *",
+
+    ".contact .section-content > .eyebrow",
+    ".contact .section-content > h2",
+    ".contact .section-content > p",
+    ".contact-links > *"
+  ].join(",");
+
+  const revealTargets = Array.from(
+    document.querySelectorAll(revealSelector)
   );
 
-  revealTargets.forEach(function (element, index) {
-    element.classList.add("scroll-reveal");
-
-    // 同じセクション内で少しずつ表示
-    const siblings = Array.from(element.parentElement.children);
-    const itemIndex = siblings.indexOf(element);
-
-    element.style.transitionDelay = (itemIndex * 0.12) + "s";
-  });
-
-  const revealObserver = new IntersectionObserver(
-    function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.12
-    }
-  );
+  // 同じ親要素の中で順番に表示
+  const delayCounts = new Map();
 
   revealTargets.forEach(function (element) {
-    revealObserver.observe(element);
+    const parent = element.parentElement;
+    const count = delayCounts.get(parent) || 0;
+
+    element.classList.add("scroll-reveal");
+    element.style.transitionDelay = (count * 0.12) + "s";
+
+    delayCounts.set(parent, count + 1);
   });
 
+  // IntersectionObserverで画面内に入ったら表示
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -30px 0px"
+      }
+    );
+
+    revealTargets.forEach(function (element) {
+      revealObserver.observe(element);
+    });
+
+  } else {
+    // 対応していないブラウザでは通常表示
+    revealTargets.forEach(function (element) {
+      element.classList.add("is-visible");
+    });
   }
+
 });

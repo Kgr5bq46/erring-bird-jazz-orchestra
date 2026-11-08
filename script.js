@@ -121,5 +121,42 @@ document.addEventListener("DOMContentLoaded", function () {
         closeLightbox();
       }
     });
+    
+  // ========================================
+  // スクロール時の順次表示アニメーション
+  // ========================================
+
+  const revealTargets = document.querySelectorAll(
+    "section > *, .hero > *, footer > *"
+  );
+
+  revealTargets.forEach(function (element, index) {
+    element.classList.add("scroll-reveal");
+
+    // 同じセクション内で少しずつ表示
+    const siblings = Array.from(element.parentElement.children);
+    const itemIndex = siblings.indexOf(element);
+
+    element.style.transitionDelay = (itemIndex * 0.12) + "s";
+  });
+
+  const revealObserver = new IntersectionObserver(
+    function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  revealTargets.forEach(function (element) {
+    revealObserver.observe(element);
+  });
+
   }
 });

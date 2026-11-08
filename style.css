@@ -2286,3 +2286,75 @@ body.lightbox-open {
     font-size: 0.85rem;
   }
 }
+
+/* ========================================
+   第13回リサイタル 終了報告
+======================================== */
+
+.recital-ended {
+  padding-bottom: 35px;
+}
+
+.recital-ended .next-concert-heading {
+  margin-bottom: 30px;
+}
+
+.recital-ended-info {
+  justify-content: center;
+}
+
+.recital-ended-status {
+  margin: 20px 0 12px;
+  color: var(--gold);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.recital-ended-date {
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  margin: 15px 0;
+}
+
+.recital-ended-line {
+  width: 55px;
+  height: 2px;
+  background: var(--gold);
+  margin: 22px 0;
+}
+
+.recital-ended-message {
+  color: var(--gold);
+  font-weight: bold;
+  line-height: 1.9;
+}
+
+.recital-ended-description {
+  font-size: 0.9rem;
+  line-height: 2;
+  margin: 12px 0;
+}
+
+.recital-ended-closing {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(212, 175, 95, 0.35);
+  font-size: 0.88rem;
+  line-height: 1.9;
+}
+
+@media (max-width: 768px) {
+  .recital-ended .next-concert-heading {
+    margin-bottom: 20px;
+  }
+
+  .recital-ended-line {
+    margin: 18px auto;
+  }
+
+  .recital-ended-closing {
+    margin-top: 18px;
+  }
+}

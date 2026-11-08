@@ -2132,3 +2132,29 @@ body.lightbox-open {
     font-size: 28px;
   }
 }
+
+/* ========================================
+   スクロール時の順次表示アニメーション
+======================================== */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 動きを控えめにしたい端末への配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

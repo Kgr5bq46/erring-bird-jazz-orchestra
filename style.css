@@ -2158,3 +2158,131 @@ body.lightbox-open {
     transition: none;
   }
 }
+/* ========================================
+   第13回リサイタル 終了報告
+======================================== */
+
+.recital-ended {
+  max-width: 1000px;
+  margin: 55px auto 0;
+  padding: 35px;
+  background: linear-gradient(145deg, #101e35, #1b304c);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+  color: var(--cream);
+}
+
+.recital-ended-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(212, 175, 95, 0.4);
+}
+
+.recital-ended-label {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+}
+
+.recital-ended-number {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+}
+
+.recital-ended-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 55px 20px 35px;
+  text-align: center;
+}
+
+.recital-ended-date {
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+}
+
+.recital-ended-content h3 {
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  letter-spacing: 0.08em;
+}
+
+.recital-ended-status {
+  margin: 20px 0 0;
+  color: var(--gold);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+
+.recital-ended-line {
+  width: 65px;
+  height: 2px;
+  margin: 32px auto;
+  background: var(--gold);
+}
+
+.recital-ended-message {
+  margin: 0 0 25px;
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.9;
+}
+
+.recital-ended-description {
+  margin: 0 0 18px;
+  color: var(--cream);
+  font-size: 0.95rem;
+  line-height: 2.1;
+}
+
+.recital-ended-closing {
+  margin: 35px 0 0;
+  padding-top: 25px;
+  border-top: 1px solid rgba(212, 175, 95, 0.3);
+  color: var(--cream);
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+/* スマートフォン */
+@media (max-width: 768px) {
+  .recital-ended {
+    margin-top: 35px;
+    padding: 20px 15px;
+  }
+
+  .recital-ended-heading {
+    gap: 10px;
+  }
+
+  .recital-ended-label,
+  .recital-ended-number {
+    font-size: 0.65rem;
+  }
+
+  .recital-ended-content {
+    padding: 40px 5px 25px;
+  }
+
+  .recital-ended-message {
+    font-size: 1rem;
+  }
+
+  .recital-ended-description {
+    font-size: 0.88rem;
+  }
+
+  .recital-ended-closing {
+    font-size: 0.85rem;
+  }
+}

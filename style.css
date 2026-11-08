@@ -2406,3 +2406,18 @@ body.lightbox-open {
     margin-top: 18px;
   }
 }
+/* スマホでも終了告知の文字を白色にする */
+@media (max-width: 768px) {
+  .concert-ended,
+  .concert-ended h3,
+  .concert-ended-detail,
+  .concert-ended-thanks {
+    color: var(--cream) !important;
+  }
+
+  .concert-ended-status,
+  .concert-ended-message,
+  .concert-ended-label {
+    color: var(--gold) !important;
+  }
+}

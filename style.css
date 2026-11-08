@@ -2025,3 +2025,110 @@ color: #000000;
 .history .history-category-events .eyebrow {
   color: #c6a15b !important;
 }
+
+/* ========================================
+   スクロール時のヘッダーアニメーション
+======================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateY(-110%);
+  transition: transform 0.45s ease;
+  width: 100%;
+}
+
+.header.is-visible {
+  transform: translateY(0);
+}
+
+/* ========================================
+   写真ライトボックス
+======================================== */
+
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.photo-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.photo-lightbox img {
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 3px solid var(--gold);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  transform: scale(0.94);
+  transition: transform 0.35s ease;
+}
+
+.photo-lightbox.is-open img {
+  transform: scale(1);
+}
+
+.photo-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--cream);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.photo-lightbox-close:hover {
+  background: var(--gold);
+  color: var(--green);
+  transform: rotate(90deg);
+}
+
+/* ライトボックス表示中は背景をスクロールさせない */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+/* スマートフォン */
+@media (max-width: 768px) {
+  .photo-lightbox {
+    padding: 15px;
+  }
+
+  .photo-lightbox img {
+    max-width: 95%;
+    max-height: 80vh;
+  }
+
+  .photo-lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 42px;
+    height: 42px;
+    font-size: 28px;
+  }
+}

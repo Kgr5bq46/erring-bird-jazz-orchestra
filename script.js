@@ -58,14 +58,15 @@ document.addEventListener("DOMContentLoaded", function () {
   if (photoLightbox && photoLightboxImage && photoLightboxClose) {
 
     document.querySelectorAll("img").forEach(function (img) {
-      if (
-        img === photoLightboxImage ||
-        img.closest(".header") ||
-        img.closest("footer") ||
-        img.closest(".photo-lightbox")
-      ) {
-        return;
-      }
+if (
+  img === photoLightboxImage ||
+  img.closest(".header") ||
+  img.closest("footer") ||
+  img.closest(".photo-lightbox") ||
+  img.closest(".recital-report")
+) {
+  return;
+}
 
       img.style.cursor = "zoom-in";
 
@@ -146,9 +147,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ".next-concert-heading > *",
     ".next-concert-layout > *",
 
-    ".section-heading > *",
-    ".gallery-grid > img",
+".section-heading > *",
+".gallery-grid > img",
 
+// 第13回リサイタル写真
+".recital-report-heading > *",
+".recital-photo-grid > .recital-photo-card",
+".recital-report-heading > *",
+".recital-photo-card",
     ".history .section-content > .eyebrow",
     ".history .section-content > h2",
     ".history .section-content > p",
@@ -207,6 +213,144 @@ document.addEventListener("DOMContentLoaded", function () {
     revealTargets.forEach(function (element) {
       element.classList.add("is-visible");
     });
+  }
+
+  // ========================================
+  // 第13回リサイタル専用ライトボックス
+  // ========================================
+
+  const recitalLightbox = document.getElementById("recitalLightbox");
+  const recitalLightboxImage = document.getElementById("recitalLightboxImage");
+  const recitalLightboxClose = document.getElementById("recitalLightboxClose");
+  const recitalLightboxPrev = document.getElementById("recitalLightboxPrev");
+  const recitalLightboxNext = document.getElementById("recitalLightboxNext");
+  const recitalLightboxCaption = document.getElementById("recitalLightboxCaption");
+  const recitalLightboxCounter = document.getElementById("recitalLightboxCounter");
+
+  const recitalPhotoCards = Array.from(
+    document.querySelectorAll(".recital-photo-card")
+  );
+
+  let currentRecitalPhoto = 0;
+  let touchStartX = 0;
+
+  if (
+    recitalLightbox &&
+    recitalLightboxImage &&
+    recitalLightboxClose &&
+    recitalLightboxPrev &&
+    recitalLightboxNext
+  ) {
+
+    function showRecitalPhoto(index) {
+      const total = recitalPhotoCards.length;
+
+      if (total === 0) return;
+
+      currentRecitalPhoto = (index + total) % total;
+
+      const card = recitalPhotoCards[currentRecitalPhoto];
+      const img = card.querySelector("img");
+
+      if (!img) return;
+
+      recitalLightboxImage.src = img.currentSrc || img.src;
+      recitalLightboxImage.alt = img.alt || "リサイタル写真";
+
+      if (recitalLightboxCaption) {
+        recitalLightboxCaption.textContent =
+          "第13回リサイタル｜写真 " +
+          String(currentRecitalPhoto + 1).padStart(2, "0");
+      }
+
+      if (recitalLightboxCounter) {
+        recitalLightboxCounter.textContent =
+          String(currentRecitalPhoto + 1).padStart(2, "0") +
+          " / " +
+          String(total).padStart(2, "0");
+      }
+    }
+
+    function openRecitalLightbox(index) {
+      showRecitalPhoto(index);
+
+      recitalLightbox.classList.add("is-open");
+      recitalLightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    }
+
+    function closeRecitalLightbox() {
+      recitalLightbox.classList.remove("is-open");
+      recitalLightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+
+      setTimeout(function () {
+        if (!recitalLightbox.classList.contains("is-open")) {
+          recitalLightboxImage.src = "";
+        }
+      }, 300);
+    }
+
+    recitalPhotoCards.forEach(function (card, index) {
+      card.addEventListener("click", function () {
+        openRecitalLightbox(index);
+      });
+    });
+
+    recitalLightboxClose.addEventListener(
+      "click",
+      closeRecitalLightbox
+    );
+
+    recitalLightboxPrev.addEventListener("click", function () {
+      showRecitalPhoto(currentRecitalPhoto - 1);
+    });
+
+    recitalLightboxNext.addEventListener("click", function () {
+      showRecitalPhoto(currentRecitalPhoto + 1);
+    });
+
+    recitalLightbox.addEventListener("click", function (event) {
+      if (event.target === recitalLightbox) {
+        closeRecitalLightbox();
+      }
+    });
+
+    // キーボード操作
+    document.addEventListener("keydown", function (event) {
+      if (!recitalLightbox.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") {
+        closeRecitalLightbox();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showRecitalPhoto(currentRecitalPhoto - 1);
+      }
+
+      if (event.key === "ArrowRight") {
+        showRecitalPhoto(currentRecitalPhoto + 1);
+      }
+    });
+
+    // スマートフォンのスワイプ操作
+    recitalLightbox.addEventListener("touchstart", function (event) {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    recitalLightbox.addEventListener("touchend", function (event) {
+      const touchEndX = event.changedTouches[0].screenX;
+      const difference = touchEndX - touchStartX;
+
+      if (Math.abs(difference) < 50) return;
+
+      if (difference > 0) {
+        showRecitalPhoto(currentRecitalPhoto - 1);
+      } else {
+        showRecitalPhoto(currentRecitalPhoto + 1);
+      }
+    }, { passive: true });
+
   }
 
 });

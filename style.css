@@ -2359,65 +2359,505 @@ body.lightbox-open {
   }
 }
 
-/* リサイタル終了報告：タイトルの視認性 */
-.recital-ended-info h3 {
-  color: #f5e8c8;
+/* ========================================
+   第13回リサイタル PHOTO REPORT
+======================================== */
+
+.recital-report {
+  margin-top: 85px;
+  padding-top: 55px;
+  border-top: 1px solid rgba(201, 156, 85, 0.45);
 }
 
-/* 特別ゲスト */
-.recital-ended-guest {
-  margin-top: 22px;
-  padding: 16px 20px;
+.recital-report-heading {
+  position: relative;
+  margin-bottom: 38px;
+  padding-left: 22px;
   border-left: 3px solid var(--gold);
-  background: rgba(255, 255, 255, 0.05);
 }
 
-.recital-ended-guest .guest-label {
+.recital-report-heading .eyebrow {
+  margin-bottom: 12px;
+}
+
+.recital-report-heading h3 {
+  margin: 0;
+  color: var(--green);
+  font-family: Georgia, "Yu Mincho", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.recital-report-date {
+  margin: 8px 0 15px;
+  color: #a77b38;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.recital-report-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* 写真グリッド */
+.recital-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 190px;
+  gap: 13px;
+}
+
+.recital-photo-card {
+  position: relative;
   display: block;
-  margin-bottom: 7px;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201, 156, 85, 0.5);
+  background: #172b27;
+  cursor: zoom-in;
+  text-align: left;
+  opacity: 1;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.recital-photo-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s ease, opacity 0.4s ease;
+}
+
+/* 写真番号 */
+.recital-photo-number {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  padding: 5px 9px;
+  color: #fffaf1;
+  background: rgba(15, 30, 27, 0.78);
+  border: 1px solid rgba(201, 156, 85, 0.7);
+  font-family: Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* 配置に変化をつける */
+.recital-photo-card:nth-child(1),
+.recital-photo-card:nth-child(10),
+.recital-photo-card:nth-child(19) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.recital-photo-card:nth-child(5),
+.recital-photo-card:nth-child(14) {
+  grid-column: span 2;
+}
+
+.recital-photo-card:hover {
+  z-index: 2;
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(24, 62, 55, 0.18);
+}
+
+.recital-photo-card:hover img {
+  transform: scale(1.07);
+}
+
+.recital-photo-card:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   第13回リサイタル 専用ライトボックス
+======================================== */
+
+.recital-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 65px 80px;
+  background: rgba(5, 12, 11, 0.94);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.recital-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.recital-lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+.recital-lightbox-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 2px solid var(--gold);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.recital-lightbox.is-open .recital-lightbox-content img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.recital-lightbox-caption {
+  margin: 16px 0 5px;
+  color: var(--cream);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.recital-lightbox-counter {
+  margin: 0;
   color: var(--gold);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 2px;
 }
 
-.recital-ended-guest strong {
+/* 閉じるボタン */
+.recital-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 3;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--cream);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.recital-lightbox-close:hover {
+  background: var(--gold);
+  color: var(--green);
+  transform: rotate(90deg);
+}
+
+/* 前後ボタン */
+.recital-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 65px;
+  padding: 0;
+  border: 1px solid rgba(201, 156, 85, 0.7);
+  background: rgba(24, 62, 55, 0.8);
+  color: var(--cream);
+  font-family: Georgia, serif;
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background 0.25s ease;
+}
+
+.recital-lightbox-arrow:hover {
+  background: var(--gold);
+  color: var(--green);
+}
+
+.recital-lightbox-prev {
+  left: 20px;
+}
+
+.recital-lightbox-next {
+  right: 20px;
+}
+
+/* スマートフォン */
+@media (max-width: 760px) {
+  .recital-report {
+    margin-top: 55px;
+    padding-top: 38px;
+  }
+
+  .recital-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 145px;
+    gap: 9px;
+  }
+
+  .recital-photo-card:nth-child(1),
+  .recital-photo-card:nth-child(10),
+  .recital-photo-card:nth-child(19) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .recital-photo-card:nth-child(5),
+  .recital-photo-card:nth-child(14) {
+    grid-column: span 2;
+  }
+
+  .recital-lightbox {
+    padding: 65px 12px 45px;
+  }
+
+  .recital-lightbox-content img {
+    max-width: 100%;
+    max-height: 68vh;
+  }
+
+  .recital-lightbox-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+
+  .recital-lightbox-arrow {
+    top: auto;
+    bottom: 10px;
+    width: 48px;
+    height: 42px;
+    font-size: 30px;
+    transform: none;
+  }
+
+  .recital-lightbox-prev {
+    left: calc(50% - 58px);
+  }
+
+  .recital-lightbox-next {
+    right: calc(50% - 58px);
+  }
+
+  .recital-lightbox-caption {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+}
+
+/* 動きを控えたい端末への配慮 */
+@media (prefers-reduced-motion: reduce) {
+  .recital-photo-card,
+  .recital-photo-card img,
+  .recital-lightbox,
+  .recital-lightbox-content img {
+    transition: none;
+  }
+}
+
+/* ========================================
+   第13回リサイタル：ランダムギャラリー
+======================================== */
+
+/* ギャラリー全体 */
+.recital-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 155px;
+  grid-auto-flow: dense;
+  gap: 14px;
+  margin-top: 35px;
+}
+
+/* 写真カードの基本設定 */
+.recital-photo-card {
+  position: relative;
   display: block;
-  font-size: 1.3rem;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201, 156, 85, 0.45);
+  background: #101e35;
+  cursor: zoom-in;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
-.recital-ended-guest a {
-  color: #f5e8c8;
-  text-decoration: none;
-  transition: opacity 0.3s;
+/* 写真 */
+.recital-photo-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
 
-.recital-ended-guest a:hover {
-  opacity: 0.7;
+/* マウスを乗せたとき */
+.recital-photo-card:hover {
+  border-color: #c99c55;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-.recital-ended-guest p {
-  margin: 5px 0 0;
-  color: #d8d0c0;
-  font-size: 0.82rem;
+.recital-photo-card:hover img {
+  transform: scale(1.08);
 }
+
+/* 写真番号 */
+.recital-photo-number {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 5px 9px;
+  color: #fff;
+  background: rgba(10, 25, 43, 0.75);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  z-index: 2;
+}
+
+/* ----------------------------------------
+   写真の大小を変えてランダムな印象に
+---------------------------------------- */
+
+/* 1枚目：大きく */
+.recital-photo-card:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* 4枚目：横長 */
+.recital-photo-card:nth-child(4) {
+  grid-column: span 2;
+}
+
+/* 7枚目：縦長 */
+.recital-photo-card:nth-child(7) {
+  grid-row: span 2;
+}
+
+/* 9枚目：横長 */
+.recital-photo-card:nth-child(9) {
+  grid-column: span 2;
+}
+
+/* 12枚目：縦長 */
+.recital-photo-card:nth-child(12) {
+  grid-row: span 2;
+}
+
+/* 14枚目：大きく */
+.recital-photo-card:nth-child(14) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* 17枚目：横長 */
+.recital-photo-card:nth-child(17) {
+  grid-column: span 2;
+}
+
+/* ----------------------------------------
+   スクロール時のふわっと表示
+---------------------------------------- */
+
+.recital-photo-card.scroll-reveal {
+  opacity: 0;
+  translate: 0 35px;
+  transition:
+    opacity 0.8s ease,
+    translate 0.8s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.recital-photo-card.scroll-reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* 見出しもふわっと表示 */
+.recital-report-heading > *.scroll-reveal {
+  opacity: 0;
+  translate: 0 25px;
+  transition:
+    opacity 0.8s ease,
+    translate 0.8s ease;
+}
+
+.recital-report-heading > *.scroll-reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ========================================
+   スマートフォン対応
+======================================== */
 
 @media (max-width: 768px) {
-  .recital-ended-guest {
-    margin-top: 18px;
-  }
-}
-/* スマホでも終了告知の文字を白色にする */
-@media (max-width: 768px) {
-  .concert-ended,
-  .concert-ended h3,
-  .concert-ended-detail,
-  .concert-ended-thanks {
-    color: var(--cream) !important;
+  .recital-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 145px;
+    gap: 9px;
   }
 
-  .concert-ended-status,
-  .concert-ended-message,
-  .concert-ended-label {
-    color: var(--gold) !important;
+  /* スマホでは横幅の大きな写真を中心に */
+  .recital-photo-card:nth-child(1),
+  .recital-photo-card:nth-child(14) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .recital-photo-card:nth-child(4),
+  .recital-photo-card:nth-child(9),
+  .recital-photo-card:nth-child(17) {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .recital-photo-card:nth-child(7),
+  .recital-photo-card:nth-child(12) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .recital-photo-grid {
+    grid-auto-rows: 120px;
+    gap: 7px;
   }
 }

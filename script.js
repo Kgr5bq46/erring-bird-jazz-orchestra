@@ -354,3 +354,73 @@ if (
   }
 
 });
+
+// ========================================
+// 第13回リサイタル フォトブック
+// ========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const bookElement = document.getElementById("recitalBook");
+  const prevButton = document.getElementById("recitalPrevPage");
+  const nextButton = document.getElementById("recitalNextPage");
+  const pageNumber = document.getElementById("recitalPageNumber");
+
+  // 必要な要素がなければ終了
+  if (!bookElement || !prevButton || !nextButton) return;
+
+  // StPageFlipが読み込まれているか確認
+  if (typeof St === "undefined" || !St.PageFlip) {
+    console.error("フォトブックのライブラリが読み込まれていません。");
+    return;
+  }
+
+  // フォトブックを作成
+  const pageFlip = new St.PageFlip(bookElement, {
+    width: 320,
+    height: 410,
+    size: "fixed",
+    minWidth: 280,
+    maxWidth: 320,
+    minHeight: 360,
+    maxHeight: 410,
+    showCover: true,
+    usePortrait: true,
+    flippingTime: 800,
+    drawShadow: true,
+    maxShadowOpacity: 0.5,
+    mobileScrollSupport: false,
+    startPage: 0
+  });
+
+  // HTML内のページを読み込む
+  const pages = bookElement.querySelectorAll(":scope > div");
+  pageFlip.loadFromHTML(pages);
+
+  // ページ番号を更新
+  function updatePageNumber() {
+    if (!pageNumber) return;
+
+    const current = pageFlip.getCurrentPageIndex() + 1;
+    const total = pageFlip.getPageCount();
+
+    pageNumber.textContent = current + " / " + total;
+  }
+
+  // 前のページ
+  prevButton.addEventListener("click", function () {
+    pageFlip.flipPrev();
+  });
+
+  // 次のページ
+  nextButton.addEventListener("click", function () {
+    pageFlip.flipNext();
+  });
+
+  // ページがめくられたとき
+  pageFlip.on("flip", function () {
+    updatePageNumber();
+  });
+
+  // 最初のページ番号
+  updatePageNumber();
+});

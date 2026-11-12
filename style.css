@@ -2861,3 +2861,10 @@ body.lightbox-open {
     gap: 7px;
   }
 }
+
+/* 第13回リサイタル終了報告：見出しの色を統一 */
+.recital-ended .next-concert-label,
+.recital-ended .next-concert-number,
+.recital-ended .next-concert-info h3 {
+  color: #c99c55;
+}

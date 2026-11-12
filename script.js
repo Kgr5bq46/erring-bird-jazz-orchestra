@@ -102,9 +102,6 @@ img.addEventListener("click", function (event) {
 // フォトブック写真の拡大表示
 // ========================================
 
-let bookTouchStart = null;
-
-// 写真を拡大表示する共通処理
 function openBookPhoto(img) {
   if (!img || !photoLightbox || !photoLightboxImage) return;
 
@@ -116,7 +113,7 @@ function openBookPhoto(img) {
   document.body.classList.add("lightbox-open");
 }
 
-// PC：クリックで拡大
+// PC：クリック操作
 document.addEventListener("click", function (event) {
   const img = event.target.closest(".book-section .photo-page img");
 
@@ -128,52 +125,18 @@ document.addEventListener("click", function (event) {
   openBookPhoto(img);
 }, true);
 
-// スマホ：写真へのタッチ開始を検知
-document.addEventListener("touchstart", function (event) {
+// スマホ：タッチ操作
+document.addEventListener("touchend", function (event) {
   const img = event.target.closest(".book-section .photo-page img");
 
-  if (!img) {
-    bookTouchStart = null;
-    return;
-  }
-
-  bookTouchStart = {
-    img: img,
-    x: event.touches[0].clientX,
-    y: event.touches[0].clientY
-  };
-
-  // ページめくりライブラリへの伝播を止める
-  event.stopPropagation();
-
-}, { capture: true, passive: true });
-
-// スマホ：タッチ終了時に拡大
-document.addEventListener("touchend", function (event) {
-  if (!bookTouchStart) return;
-
-  const touch = event.changedTouches[0];
-  const moveX = Math.abs(touch.clientX - bookTouchStart.x);
-  const moveY = Math.abs(touch.clientY - bookTouchStart.y);
-
-  const img = bookTouchStart.img;
-  bookTouchStart = null;
-
-  // 指を大きく動かした場合は拡大しない
-  if (moveX > 15 || moveY > 15) return;
+  if (!img) return;
 
   event.preventDefault();
   event.stopPropagation();
   event.stopImmediatePropagation();
 
   openBookPhoto(img);
-
 }, { capture: true, passive: false });
-
-// タッチキャンセル時
-document.addEventListener("touchcancel", function () {
-  bookTouchStart = null;
-}, true);
 }, { capture: true, passive: false });
     function closeLightbox() {
       photoLightbox.classList.remove("is-open");

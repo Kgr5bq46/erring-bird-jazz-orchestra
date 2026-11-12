@@ -63,7 +63,8 @@ if (
   img.closest(".header") ||
   img.closest("footer") ||
   img.closest(".photo-lightbox") ||
-  img.closest(".recital-report")
+  img.closest(".recital-report") ||
+  img.closest(".book-section")
 ) {
   return;
 }
@@ -356,17 +357,13 @@ if (
 });
 
 // ========================================
-// 第13回リサイタル フォトブック
+// 第13回リサイタル PHOTO BOOK
 // ========================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  const bookElement = document.getElementById("recitalBook");
-  const prevButton = document.getElementById("recitalPrevPage");
-  const nextButton = document.getElementById("recitalNextPage");
-  const pageNumber = document.getElementById("recitalPageNumber");
+  const bookElement = document.getElementById("book");
 
-  // 必要な要素がなければ終了
-  if (!bookElement || !prevButton || !nextButton) return;
+  if (!bookElement) return;
 
   // StPageFlipが読み込まれているか確認
   if (typeof St === "undefined" || !St.PageFlip) {
@@ -374,53 +371,59 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // フォトブックを作成
   const pageFlip = new St.PageFlip(bookElement, {
     width: 320,
     height: 410,
-    size: "fixed",
-    minWidth: 280,
-    maxWidth: 320,
-    minHeight: 360,
-    maxHeight: 410,
+    size: "stretch",
+    minWidth: 250,
+    maxWidth: 500,
+    minHeight: 320,
+    maxHeight: 640,
     showCover: true,
-    usePortrait: true,
-    flippingTime: 800,
-    drawShadow: true,
-    maxShadowOpacity: 0.5,
-    mobileScrollSupport: false,
-    startPage: 0
+    maxShadowOpacity: 0.35,
+    mobileScrollSupport: false
   });
 
   // HTML内のページを読み込む
-  const pages = bookElement.querySelectorAll(":scope > div");
-  pageFlip.loadFromHTML(pages);
+  pageFlip.loadFromHTML(
+    bookElement.querySelectorAll(":scope > div")
+  );
+
+  const pageNumber = document.getElementById("pageNumber");
+  const prevButton = document.getElementById("prevPage");
+  const nextButton = document.getElementById("nextPage");
 
   // ページ番号を更新
-  function updatePageNumber() {
-    if (!pageNumber) return;
-
-    const current = pageFlip.getCurrentPageIndex() + 1;
+  function updatePage() {
+    const current = pageFlip.getCurrentPageIndex();
     const total = pageFlip.getPageCount();
 
-    pageNumber.textContent = current + " / " + total;
+    if (current === 0) {
+      pageNumber.textContent = "表紙";
+    } else if (current === total - 1) {
+      pageNumber.textContent = "裏表紙";
+    } else {
+      pageNumber.textContent = current + " / " + (total - 1);
+    }
   }
 
   // 前のページ
-  prevButton.addEventListener("click", function () {
-    pageFlip.flipPrev();
-  });
+  if (prevButton) {
+    prevButton.addEventListener("click", function () {
+      pageFlip.flipPrev();
+    });
+  }
 
   // 次のページ
-  nextButton.addEventListener("click", function () {
-    pageFlip.flipNext();
-  });
+  if (nextButton) {
+    nextButton.addEventListener("click", function () {
+      pageFlip.flipNext();
+    });
+  }
 
   // ページがめくられたとき
-  pageFlip.on("flip", function () {
-    updatePageNumber();
-  });
+  pageFlip.on("flip", updatePage);
 
   // 最初のページ番号
-  updatePageNumber();
+  updatePage();
 });

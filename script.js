@@ -58,27 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
   if (photoLightbox && photoLightboxImage && photoLightboxClose) {
 
     document.querySelectorAll("img").forEach(function (img) {
-if (
-  img === photoLightboxImage ||
-  img.closest(".header") ||
-  img.closest("footer") ||
-  img.closest(".photo-lightbox") ||
-  img.closest(".book-section") ||
-  img.closest(".recital-report")
-) {
-  return;
-}
+      if (
+        img === photoLightboxImage ||
+        img.closest(".header") ||
+        img.closest("footer") ||
+        img.closest(".photo-lightbox") ||
+        img.closest(".book-section") ||
+        img.closest(".recital-report")
+      ) {
+        return;
+      }
 
       img.style.cursor = "zoom-in";
 
-img.addEventListener("click", function (event) {
-
-  // フォトブック内の写真ではページめくりとの干渉を防ぐ
-  if (img.closest(".book-section")) {
-    event.stopPropagation();
-  }
-
-  const link = img.closest("a");
+      img.addEventListener("click", function (event) {
+        const link = img.closest("a");
 
         if (link) {
           const href = link.getAttribute("href") || "";
@@ -98,46 +92,7 @@ img.addEventListener("click", function (event) {
         document.body.classList.add("lightbox-open");
       });
     });
-// ========================================
-// フォトブック写真の拡大表示
-// ========================================
 
-function openBookPhoto(img) {
-  if (!img || !photoLightbox || !photoLightboxImage) return;
-
-  photoLightboxImage.src = img.currentSrc || img.src;
-  photoLightboxImage.alt = img.alt || "リサイタル写真";
-
-  photoLightbox.classList.add("is-open");
-  photoLightbox.setAttribute("aria-hidden", "false");
-  document.body.classList.add("lightbox-open");
-}
-
-// PC：クリック操作
-document.addEventListener("click", function (event) {
-  const img = event.target.closest(".book-section .photo-page img");
-
-  if (!img) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  openBookPhoto(img);
-}, true);
-
-// スマホ：タッチ操作
-document.addEventListener("touchend", function (event) {
-  const img = event.target.closest(".book-section .photo-page img");
-
-  if (!img) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-  event.stopImmediatePropagation();
-
-  openBookPhoto(img);
-}, { capture: true, passive: false });
-}, { capture: true, passive: false });
     function closeLightbox() {
       photoLightbox.classList.remove("is-open");
       photoLightbox.setAttribute("aria-hidden", "true");

@@ -98,7 +98,22 @@ img.addEventListener("click", function (event) {
         document.body.classList.add("lightbox-open");
       });
     });
-// フォトブック内の写真をクリックしたときの拡大表示
+// ========================================
+// フォトブック写真の拡大表示
+// ========================================
+
+function openBookPhoto(img) {
+  if (!img || !photoLightbox || !photoLightboxImage) return;
+
+  photoLightboxImage.src = img.currentSrc || img.src;
+  photoLightboxImage.alt = img.alt || "リサイタル写真";
+
+  photoLightbox.classList.add("is-open");
+  photoLightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("lightbox-open");
+}
+
+// PC：クリック操作
 document.addEventListener("click", function (event) {
   const img = event.target.closest(".book-section .photo-page img");
 
@@ -107,13 +122,21 @@ document.addEventListener("click", function (event) {
   event.preventDefault();
   event.stopPropagation();
 
-  photoLightboxImage.src = img.currentSrc || img.src;
-  photoLightboxImage.alt = img.alt || "リサイタル写真";
-
-  photoLightbox.classList.add("is-open");
-  photoLightbox.setAttribute("aria-hidden", "false");
-  document.body.classList.add("lightbox-open");
+  openBookPhoto(img);
 }, true);
+
+// スマホ：タッチ操作
+document.addEventListener("touchend", function (event) {
+  const img = event.target.closest(".book-section .photo-page img");
+
+  if (!img) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+
+  openBookPhoto(img);
+}, { capture: true, passive: false });
     function closeLightbox() {
       photoLightbox.classList.remove("is-open");
       photoLightbox.setAttribute("aria-hidden", "true");

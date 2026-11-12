@@ -58,21 +58,28 @@ document.addEventListener("DOMContentLoaded", function () {
   if (photoLightbox && photoLightboxImage && photoLightboxClose) {
 
     document.querySelectorAll("img").forEach(function (img) {
+const isBookPhoto = img.closest(".book-section");
+
 if (
   img === photoLightboxImage ||
   img.closest(".header") ||
   img.closest("footer") ||
   img.closest(".photo-lightbox") ||
-  img.closest(".recital-report") ||
-  img.closest(".book-section")
+  (img.closest(".recital-report") && !isBookPhoto)
 ) {
   return;
 }
 
       img.style.cursor = "zoom-in";
 
-      img.addEventListener("click", function (event) {
-        const link = img.closest("a");
+img.addEventListener("click", function (event) {
+
+  // フォトブック内の写真ではページめくりとの干渉を防ぐ
+  if (img.closest(".book-section")) {
+    event.stopPropagation();
+  }
+
+  const link = img.closest("a");
 
         if (link) {
           const href = link.getAttribute("href") || "";

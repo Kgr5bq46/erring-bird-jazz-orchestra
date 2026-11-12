@@ -58,14 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (photoLightbox && photoLightboxImage && photoLightboxClose) {
 
     document.querySelectorAll("img").forEach(function (img) {
-const isBookPhoto = img.closest(".book-section");
-
 if (
   img === photoLightboxImage ||
   img.closest(".header") ||
   img.closest("footer") ||
   img.closest(".photo-lightbox") ||
-  (img.closest(".recital-report") && !isBookPhoto)
+  img.closest(".book-section") ||
+  img.closest(".recital-report")
 ) {
   return;
 }

@@ -98,7 +98,22 @@ img.addEventListener("click", function (event) {
         document.body.classList.add("lightbox-open");
       });
     });
+// フォトブック内の写真をクリックしたときの拡大表示
+document.addEventListener("click", function (event) {
+  const img = event.target.closest(".book-section .photo-page img");
 
+  if (!img) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  photoLightboxImage.src = img.currentSrc || img.src;
+  photoLightboxImage.alt = img.alt || "リサイタル写真";
+
+  photoLightbox.classList.add("is-open");
+  photoLightbox.setAttribute("aria-hidden", "false");
+  document.body.classList.add("lightbox-open");
+}, true);
     function closeLightbox() {
       photoLightbox.classList.remove("is-open");
       photoLightbox.setAttribute("aria-hidden", "true");
